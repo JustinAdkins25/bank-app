@@ -1,36 +1,31 @@
 steps:
-- name: 'gcr.io/cloud-builders/docker'
-  args:
-    [
-      'build',
-      '-t',
-      'us-central1-docker.pkg.dev/$PROJECT_ID/bank-app/backend',
-      '.'
-    ]
-  dir: 'bank-backend'
+  - name: "gcr.io/cloud-builders/docker"
+    dir: "bank-backend"
+    args:
+      - "build"
+      - "-t"
+      - "us-central1-docker.pkg.dev/$PROJECT_ID/bank-app/backend:latest"
+      - "."
 
-- name: 'gcr.io/cloud-builders/docker'
-  args:
-    [
-      'push',
-      'us-central1-docker.pkg.dev/$PROJECT_ID/bank-app/backend'
-    ]
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      - "push"
+      - "us-central1-docker.pkg.dev/$PROJECT_ID/bank-app/backend:latest"
 
-- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-  entrypoint: gcloud
-  args:
-    [
-      'run',
-      'deploy',
-      'bank-backend',
-      '--image',
-      'us-central1-docker.pkg.dev/$PROJECT_ID/bank-app/backend',
-      '--region',
-      'us-central1',
-      '--platform',
-      'managed',
-      '--allow-unauthenticated'
-    ]
+  - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
+    entrypoint: "gcloud"
+    args:
+      - "run"
+      - "deploy"
+      - "bank-backend"
+      - "--image"
+      - "us-central1-docker.pkg.dev/$PROJECT_ID/bank-app/backend:latest"
+      - "--region"
+      - "us-central1"
+      - "--platform"
+      - "managed"
+      - "--allow-unauthenticated"
 
-    options:
+options:
   logging: CLOUD_LOGGING_ONLY
+
