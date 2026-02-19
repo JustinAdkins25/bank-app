@@ -1,0 +1,35 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args:
+    [
+      'build',
+      '--build-arg',
+      'REACT_APP_API_URL=https://bank-backend-524103119199.us-central1.run.app',
+      '-t',
+      'us-central1-docker.pkg.dev/$PROJECT_ID/adkins-bank-app/frontend',
+      '.'
+    ]
+  dir: 'bank-frontend'
+
+- name: 'gcr.io/cloud-builders/docker'
+  args:
+    [
+      'push',
+      'us-central1-docker.pkg.dev/$PROJECT_ID/adkins-bank-app/frontend'
+    ]
+
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: gcloud
+  args:
+    [
+      'run',
+      'deploy',
+      'bank-frontend',
+      '--image',
+      'us-central1-docker.pkg.dev/$PROJECT_ID/adkins-bank-app/frontend',
+      '--region',
+      'us-central1',
+      '--platform',
+      'managed',
+      '--allow-unauthenticated'
+    ]
