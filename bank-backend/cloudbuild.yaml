@@ -4,13 +4,13 @@ steps:
     args:
       - "build"
       - "-t"
-      - "us-central1-docker.pkg.dev/$PROJECT_ID/bank-app/backend:latest"
+      - "us-central1-docker.pkg.dev/$PROJECT_ID/adkins-bank-app/backend:latest"
       - "."
 
   - name: "gcr.io/cloud-builders/docker"
     args:
       - "push"
-      - "us-central1-docker.pkg.dev/$PROJECT_ID/bank-app/backend:latest"
+      - "us-central1-docker.pkg.dev/$PROJECT_ID/adkins-bank-app/backend:latest"
 
   - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
     entrypoint: "gcloud"
@@ -19,7 +19,7 @@ steps:
       - "deploy"
       - "bank-backend"
       - "--image"
-      - "us-central1-docker.pkg.dev/$PROJECT_ID/bank-app/backend:latest"
+      - "us-central1-docker.pkg.dev/$PROJECT_ID/adkins-bank-app/backend:latest"
       - "--region"
       - "us-central1"
       - "--platform"
