@@ -24,7 +24,7 @@ steps:
     [
       'run',
       'deploy',
-      'bank-frontend',
+      'adkins-bank-frontend',
       '--image',
       'us-central1-docker.pkg.dev/$PROJECT_ID/adkins-bank-app/frontend',
       '--region',
@@ -33,3 +33,4 @@ steps:
       'managed',
       '--allow-unauthenticated'
     ]
+
