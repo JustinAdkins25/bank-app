@@ -25,7 +25,7 @@ const PageHome = () => (
 
 const PageAccounts = () => (
   <div>
-    <ContentHeader primary='Viewing All Accounts' />
+    <ContentHeader primary='View All Accounts' />
     <AccountTable dataFetcher={() => getAccounts()} />
   </div>
 );
@@ -94,4 +94,5 @@ export default function App() {
       </Box>
     </Container>
   );
+
 };
