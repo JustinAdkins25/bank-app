@@ -4,7 +4,7 @@ steps:
     [
       'build',
       '--build-arg',
-      'REACT_APP_API_URL=https://adkins-bank-backend-524103119199.us-central1.run.app/api',
+      'REACT_APP_API_URL=https://adkins-bank-backend-524103119199.us-central1.run.app/api/v1',
       '-t',
       'us-central1-docker.pkg.dev/$PROJECT_ID/adkins-bank-app/frontend',
       '.'
@@ -36,5 +36,6 @@ steps:
 
 options:
   logging: CLOUD_LOGGING_ONLY
+
 
 
